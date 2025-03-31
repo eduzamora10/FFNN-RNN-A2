@@ -176,7 +176,22 @@ if __name__ == "__main__":
 
         epoch += 1
 
-
+    # Write results to test_rnn.out
+    print("========== Writing results to test_rnn.out ==========")
+    with open("results/test_rnn.out", "w") as f:
+        f.write("Training Results:\n")
+        f.write("Number of epochs: {}\n".format(epoch))
+        f.write("Hidden dimension: {}\n".format(args.hidden_dim))
+        f.write("Training data: {}\n".format(args.train_data))
+        f.write("Validation data: {}\n".format(args.val_data))
+        if args.test_data != "to fill":
+            f.write("Test data: {}\n".format(args.test_data))
+        f.write("\nBest Results:\n")
+        f.write("Best validation accuracy: {}\n".format(last_validation_accuracy))
+        f.write("Best training accuracy: {}\n".format(last_train_accuracy))
+        if args.test_data != "to fill":
+            f.write("Test accuracy: {}\n".format(test_accuracy))
+            f.write("Test time: {}\n".format(test_time))
 
     # You may find it beneficial to keep track of training accuracy or training loss;
 

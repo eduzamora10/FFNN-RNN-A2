@@ -127,6 +127,13 @@ if __name__ == "__main__":
     model = FFNN(input_dim = len(vocab), h = args.hidden_dim)
     optimizer = optim.SGD(model.parameters(),lr=0.01, momentum=0.9)
     print("========== Training for {} epochs ==========".format(args.epochs))
+    
+    # Lists to store results for each epoch
+    train_accuracies = []
+    train_times = []
+    val_accuracies = []
+    val_times = []
+    
     for epoch in range(args.epochs):
         model.train()
         optimizer.zero_grad()
@@ -155,9 +162,13 @@ if __name__ == "__main__":
             loss = loss / minibatch_size
             loss.backward()
             optimizer.step()
+        train_time = time.time() - start_time # time taken for training
+        train_acc = correct / total # accuracy on training set
+        train_accuracies.append(train_acc)
+        train_times.append(train_time)
         print("Training completed for epoch {}".format(epoch + 1))
-        print("Training accuracy for epoch {}: {}".format(epoch + 1, correct / total))
-        print("Training time for this epoch: {}".format(time.time() - start_time))
+        print("Training accuracy for epoch {}: {}".format(epoch + 1, train_acc))
+        print("Training time for this epoch: {}".format(train_time))
 
 
         loss = None
@@ -182,9 +193,29 @@ if __name__ == "__main__":
                 else:
                     loss += example_loss
             loss = loss / minibatch_size
+        val_time = time.time() - start_time # time taken for validation
+        val_acc = correct / total # accuracy on validation set
+        val_accuracies.append(val_acc)
+        val_times.append(val_time) 
         print("Validation completed for epoch {}".format(epoch + 1))
-        print("Validation accuracy for epoch {}: {}".format(epoch + 1, correct / total))
-        print("Validation time for this epoch: {}".format(time.time() - start_time))
+        print("Validation accuracy for epoch {}: {}".format(epoch + 1, val_acc))
+        print("Validation time for this epoch: {}".format(val_time))
 
-    # write out to results/test.out
+    # Write results to test_ffnn.out
+    print("========== Writing results to test_ffnn.out ==========")
+    with open("results/test_ffnn.out", "w") as f:
+        f.write("Training Results:\n")
+        f.write("Number of epochs: {}\n".format(args.epochs))
+        f.write("Hidden dimension: {}\n".format(args.hidden_dim))
+        f.write("Training data: {}\n".format(args.train_data))
+        f.write("Validation data: {}\n".format(args.val_data))
+        if args.test_data != "to fill":
+            f.write("Test data: {}\n".format(args.test_data))
+        f.write("\nPer-epoch Results:\n")
+        for epoch in range(args.epochs):
+            f.write("\nEpoch {}:\n".format(epoch + 1))
+            f.write("Training accuracy: {}\n".format(train_accuracies[epoch]))
+            f.write("Training time: {}\n".format(train_times[epoch]))
+            f.write("Validation accuracy: {}\n".format(val_accuracies[epoch]))
+            f.write("Validation time: {}\n".format(val_times[epoch]))
     

@@ -1,0 +1,9 @@
+Training Results:
+Number of epochs: 2
+Hidden dimension: 32
+Training data: training.json
+Validation data: validation.json
+
+Best Results:
+Best validation accuracy: 0.4325
+Best training accuracy: 0.22625
