@@ -1,9 +1,98 @@
 Training Results:
-Number of epochs: 2
-Hidden dimension: 32
+Number of epochs: 3
+Hidden dimension: 50
 Training data: training.json
 Validation data: validation.json
 
+Epoch-wise Results:
+
+Epoch 1:
+  Training accuracy: 0.4094
+  Validation accuracy: 0.4125
+
+Epoch 2:
+  Training accuracy: 0.4340
+  Validation accuracy: 0.4512
+
+Epoch 3:
+  Training accuracy: 0.4371
+  Validation accuracy: 0.4200
+
 Best Results:
-Best validation accuracy: 0.4325
-Best training accuracy: 0.22625
+Highest validation accuracy: 0.4512
+Final training accuracy: 0.4371
+
+=================================================
+Training Results:
+Number of epochs: 3
+Hidden dimension: 100
+Training data: training.json
+Validation data: validation.json
+
+Epoch-wise Results:
+
+Epoch 1:
+  Training accuracy: 0.3985
+  Validation accuracy: 0.3950
+
+Epoch 2:
+  Training accuracy: 0.4096
+  Validation accuracy: 0.4037
+
+Epoch 3:
+  Training accuracy: 0.4121
+  Validation accuracy: 0.3987
+
+Best Results:
+Highest validation accuracy: 0.4037
+Final training accuracy: 0.4096
+
+==================================================
+
+Training Results:
+Number of epochs: 9
+Hidden dimension: 200
+Training data: training.json
+Validation data: validation.json
+
+Epoch-wise Results:
+
+Epoch 1:
+  Training accuracy: 0.3821
+  Validation accuracy: 0.4000
+
+Epoch 2:
+  Training accuracy: 0.3886
+  Validation accuracy: 0.4000
+
+Epoch 3:
+  Training accuracy: 0.3945
+  Validation accuracy: 0.4000
+
+Epoch 4:
+  Training accuracy: 0.3703
+  Validation accuracy: 0.4000
+
+Epoch 5:
+  Training accuracy: 0.3909
+  Validation accuracy: 0.4000
+
+Epoch 6:
+  Training accuracy: 0.3919
+  Validation accuracy: 0.4000
+
+Epoch 7:
+  Training accuracy: 0.3862
+  Validation accuracy: 0.4037
+
+Epoch 8:
+  Training accuracy: 0.3859
+  Validation accuracy: 0.3987
+
+Epoch 9:
+  Training accuracy: 0.3860
+  Validation accuracy: 0.2087
+
+Best Results:
+Highest validation accuracy: 0.4037
+Final training accuracy: 0.3859

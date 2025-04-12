@@ -1,67 +1,208 @@
 Training Results:
 Number of epochs: 10
-Hidden dimension: 128
+Hidden dimension: 50
 Training data: training.json
 Validation data: validation.json
 
 Per-epoch Results:
 
 Epoch 1:
-Training accuracy: 0.4186875
-Training time: 289.45690536499023
-Validation accuracy: 0.5425
-Validation time: 2.137547254562378
+Training accuracy: 0.527
+Training time: 47.34205913543701
+Validation accuracy: 0.535
+Validation time: 0.8744058609008789
 
 Epoch 2:
-Training accuracy: 0.5050625
-Training time: 280.845449924469
-Validation accuracy: 0.50375
-Validation time: 2.0233771800994873
+Training accuracy: 0.585625
+Training time: 49.501220703125
+Validation accuracy: 0.59375
+Validation time: 0.9545013904571533
 
 Epoch 3:
-Training accuracy: 0.5458125
-Training time: 288.5134196281433
-Validation accuracy: 0.56375
-Validation time: 2.028966188430786
+Training accuracy: 0.6225
+Training time: 51.35673761367798
+Validation accuracy: 0.59625
+Validation time: 0.9364345073699951
 
 Epoch 4:
-Training accuracy: 0.5765625
-Training time: 287.7945683002472
-Validation accuracy: 0.51375
-Validation time: 2.035980224609375
+Training accuracy: 0.64525
+Training time: 50.07683491706848
+Validation accuracy: 0.59625
+Validation time: 0.9325962066650391
 
 Epoch 5:
-Training accuracy: 0.6034375
-Training time: 284.7527885437012
-Validation accuracy: 0.5725
-Validation time: 2.1709084510803223
+Training accuracy: 0.651
+Training time: 48.386744022369385
+Validation accuracy: 0.5975
+Validation time: 0.9773073196411133
 
 Epoch 6:
-Training accuracy: 0.6309375
-Training time: 278.1069827079773
-Validation accuracy: 0.55125
-Validation time: 2.0521929264068604
+Training accuracy: 0.684375
+Training time: 48.13354539871216
+Validation accuracy: 0.61
+Validation time: 0.9761667251586914
 
 Epoch 7:
-Training accuracy: 0.6695625
-Training time: 289.18854999542236
-Validation accuracy: 0.58625
-Validation time: 2.241407632827759
+Training accuracy: 0.718375
+Training time: 48.55078840255737
+Validation accuracy: 0.52625
+Validation time: 0.9332351684570312
 
 Epoch 8:
-Training accuracy: 0.6980625
-Training time: 297.2576394081116
-Validation accuracy: 0.53875
-Validation time: 2.309476613998413
+Training accuracy: 0.726125
+Training time: 46.87826204299927
+Validation accuracy: 0.5925
+Validation time: 0.8934133052825928
 
 Epoch 9:
-Training accuracy: 0.7135625
-Training time: 291.8028655052185
-Validation accuracy: 0.56
-Validation time: 2.230152130126953
+Training accuracy: 0.752
+Training time: 47.88105392456055
+Validation accuracy: 0.6025
+Validation time: 0.9718813896179199
 
 Epoch 10:
-Training accuracy: 0.7523125
-Training time: 296.06957483291626
+Training accuracy: 0.78025
+Training time: 47.64283514022827
+Validation accuracy: 0.59
+Validation time: 0.9374861717224121
+
+========================================================
+Training Results:
+Number of epochs: 10
+Hidden dimension: 100
+Training data: training.json
+Validation data: validation.json
+
+Per-epoch Results:
+
+Epoch 1:
+Training accuracy: 0.529875
+Training time: 80.49182176589966
+Validation accuracy: 0.54875
+Validation time: 1.327831506729126
+
+Epoch 2:
+Training accuracy: 0.583
+Training time: 77.06739330291748
+Validation accuracy: 0.5925
+Validation time: 1.3866283893585205
+
+Epoch 3:
+Training accuracy: 0.615875
+Training time: 76.89207553863525
+Validation accuracy: 0.57625
+Validation time: 1.356947898864746
+
+Epoch 4:
+Training accuracy: 0.647375
+Training time: 78.42560338973999
+Validation accuracy: 0.59
+Validation time: 1.329012155532837
+
+Epoch 5:
+Training accuracy: 0.6455
+Training time: 78.12624955177307
+Validation accuracy: 0.6025
+Validation time: 1.3126115798950195
+
+Epoch 6:
+Training accuracy: 0.693
+Training time: 77.34996509552002
+Validation accuracy: 0.59375
+Validation time: 1.31996750831604
+
+Epoch 7:
+Training accuracy: 0.721875
+Training time: 77.34694981575012
+Validation accuracy: 0.5225
+Validation time: 1.2326974868774414
+
+Epoch 8:
+Training accuracy: 0.7375
+Training time: 76.57485914230347
 Validation accuracy: 0.58375
-Validation time: 2.2642056941986084
+Validation time: 1.2344703674316406
+
+Epoch 9:
+Training accuracy: 0.77575
+Training time: 76.48660898208618
+Validation accuracy: 0.61375
+Validation time: 1.2516791820526123
+
+Epoch 10:
+Training accuracy: 0.792375
+Training time: 76.23285555839539
+Validation accuracy: 0.6
+Validation time: 1.233689546585083
+
+
+========================================================
+Training Results:
+Number of epochs: 10
+Hidden dimension: 200
+Training data: training.json
+Validation data: validation.json
+
+Per-epoch Results:
+
+Epoch 1:
+Training accuracy: 0.529
+Training time: 178.69645142555237
+Validation accuracy: 0.535
+Validation time: 2.5160417556762695
+
+Epoch 2:
+Training accuracy: 0.5845
+Training time: 153.61998105049133
+Validation accuracy: 0.57875
+Validation time: 2.400233268737793
+
+Epoch 3:
+Training accuracy: 0.625125
+Training time: 161.86190223693848
+Validation accuracy: 0.57875
+Validation time: 2.373297929763794
+
+Epoch 4:
+Training accuracy: 0.650375
+Training time: 154.0841419696808
+Validation accuracy: 0.56875
+Validation time: 2.401909589767456
+
+Epoch 5:
+Training accuracy: 0.6635
+Training time: 152.67422533035278
+Validation accuracy: 0.615
+Validation time: 2.3544771671295166
+
+Epoch 6:
+Training accuracy: 0.6955
+Training time: 151.63416838645935
+Validation accuracy: 0.61
+Validation time: 2.2926015853881836
+
+Epoch 7:
+Training accuracy: 0.726
+Training time: 161.0334553718567
+Validation accuracy: 0.49125
+Validation time: 2.358346700668335
+
+Epoch 8:
+Training accuracy: 0.738125
+Training time: 157.6111454963684
+Validation accuracy: 0.565
+Validation time: 2.5286614894866943
+
+Epoch 9:
+Training accuracy: 0.777125
+Training time: 161.96581721305847
+Validation accuracy: 0.61125
+Validation time: 2.281215190887451
+
+Epoch 10:
+Training accuracy: 0.7965
+Training time: 157.98302340507507
+Validation accuracy: 0.5575
+Validation time: 2.329594612121582
+
+

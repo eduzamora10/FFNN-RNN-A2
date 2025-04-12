@@ -38,7 +38,7 @@ class RNN(nn.Module):
         summed_output = torch.sum(output_layer, dim=0, keepdim=True)
         # [to fill] obtain probability dist.
         predicted_vector = self.softmax(summed_output)
-        
+
         return predicted_vector
 
 
@@ -88,6 +88,10 @@ if __name__ == "__main__":
 
     last_train_accuracy = 0
     last_validation_accuracy = 0
+
+    # At the start of training, initialize lists to track metrics
+    train_accuracies = []
+    val_accuracies = []
 
     while not stopping_condition:
         random.shuffle(train_data)
@@ -140,7 +144,8 @@ if __name__ == "__main__":
             optimizer.step()
         print(loss_total/loss_count)
         print("Training completed for epoch {}".format(epoch + 1))
-        print("Training accuracy for epoch {}: {}".format(epoch + 1, correct / total))
+        train_accuracies.append(correct / total)
+        print("Training accuracy for epoch {}: {}".format(epoch + 1, train_accuracies[-1]))
         trainning_accuracy = correct/total
 
 
@@ -164,7 +169,8 @@ if __name__ == "__main__":
             total += 1
             # print(predicted_label, gold_label)
         print("Validation completed for epoch {}".format(epoch + 1))
-        print("Validation accuracy for epoch {}: {}".format(epoch + 1, correct / total))
+        val_accuracies.append(correct / total)
+        print("Validation accuracy for epoch {}: {}".format(epoch + 1, val_accuracies[-1]))
         validation_accuracy = correct/total
 
         if validation_accuracy < last_validation_accuracy and trainning_accuracy > last_train_accuracy:
@@ -177,6 +183,7 @@ if __name__ == "__main__":
 
         epoch += 1
 
+
     # Write results to test_rnn.out
     print("========== Writing results to test_rnn.out ==========")
     with open("results/test_rnn.out", "w") as f:
@@ -187,13 +194,12 @@ if __name__ == "__main__":
         f.write("Validation data: {}\n".format(args.val_data))
         if args.test_data != "to fill":
             f.write("Test data: {}\n".format(args.test_data))
+        f.write("\nEpoch-wise Results:\n")
+        for i in range(len(train_accuracies)):
+            f.write("\nEpoch {}:\n".format(i + 1))
+            f.write("  Training accuracy: {:.4f}\n".format(train_accuracies[i]))
+            f.write("  Validation accuracy: {:.4f}\n".format(val_accuracies[i]))
+
         f.write("\nBest Results:\n")
-        f.write("Best validation accuracy: {}\n".format(last_validation_accuracy))
-        f.write("Best training accuracy: {}\n".format(last_train_accuracy))
-        if args.test_data != "to fill":
-            f.write("Test accuracy: {}\n".format(test_accuracy))
-            f.write("Test time: {}\n".format(test_time))
-
-    # You may find it beneficial to keep track of training accuracy or training loss;
-
-    # Think about how to update the model and what this entails. Consider ffnn.py and the PyTorch documentation for guidance
+        f.write("Highest validation accuracy: {:.4f}\n".format(max(val_accuracies)))
+        f.write("Final training accuracy: {:.4f}\n".format(last_train_accuracy))
