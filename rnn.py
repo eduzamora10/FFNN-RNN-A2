@@ -93,6 +93,8 @@ if __name__ == "__main__":
     train_accuracies = []
     val_accuracies = []
 
+    error_examples = [] # List to store error examples
+
     while not stopping_condition:
         random.shuffle(train_data)
         model.train()
@@ -167,6 +169,15 @@ if __name__ == "__main__":
             predicted_label = torch.argmax(output)
             correct += int(predicted_label == gold_label)
             total += 1
+            # code to write error examples to a file
+            predicted_label = torch.argmax(output)
+
+            if predicted_label != gold_label:
+                error_examples.append({
+                    "input": " ".join(input_words),
+                    "gold": gold_label,
+                    "predicted": predicted_label.item()
+                })
             # print(predicted_label, gold_label)
         print("Validation completed for epoch {}".format(epoch + 1))
         val_accuracies.append(correct / total)
@@ -183,6 +194,12 @@ if __name__ == "__main__":
 
         epoch += 1
 
+    # Write error examples to a file
+    with open("error-samples/error_samples_rnn.txt", "w") as error_file:
+        for e in error_examples:
+            error_file.write(f"Input: {e['input']}\n")
+            error_file.write(f"Gold Label: {e['gold']}\n")
+            error_file.write(f"Predicted Label: {e['predicted']}\n\n")
 
     # Write results to test_rnn.out
     print("========== Writing results to test_rnn.out ==========")

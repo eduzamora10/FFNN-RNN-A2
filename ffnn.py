@@ -78,7 +78,7 @@ def convert_to_vector_representation(data, word2index):
         for word in document:
             index = word2index.get(word, word2index[unk])
             vector[index] += 1
-        vectorized_data.append((vector, y))
+        vectorized_data.append((document, vector, y))
     return vectorized_data
 
 
@@ -133,6 +133,10 @@ if __name__ == "__main__":
     train_times = []
     val_accuracies = []
     val_times = []
+
+    error_samples_train = []
+    error_samples_val = []
+
     
     for epoch in range(args.epochs):
         model.train()
@@ -149,7 +153,7 @@ if __name__ == "__main__":
             optimizer.zero_grad()
             loss = None
             for example_index in range(minibatch_size):
-                input_vector, gold_label = train_data[minibatch_index * minibatch_size + example_index]
+                original_text, input_vector, gold_label = train_data[minibatch_index * minibatch_size + example_index]
                 predicted_vector = model(input_vector)
                 predicted_label = torch.argmax(predicted_vector)
                 correct += int(predicted_label == gold_label)
@@ -162,6 +166,10 @@ if __name__ == "__main__":
             loss = loss / minibatch_size
             loss.backward()
             optimizer.step()
+            predicted_label = torch.argmax(predicted_vector)
+            if predicted_label != gold_label:
+                error_samples_train.append((" ".join(original_text), gold_label, predicted_label.item()))
+
         train_time = time.time() - start_time # time taken for training
         train_acc = correct / total # accuracy on training set
         train_accuracies.append(train_acc)
@@ -182,7 +190,7 @@ if __name__ == "__main__":
             optimizer.zero_grad()
             loss = None
             for example_index in range(minibatch_size):
-                input_vector, gold_label = valid_data[minibatch_index * minibatch_size + example_index]
+                original_text, input_vector, gold_label = valid_data[minibatch_index * minibatch_size + example_index]
                 predicted_vector = model(input_vector)
                 predicted_label = torch.argmax(predicted_vector)
                 correct += int(predicted_label == gold_label)
@@ -193,6 +201,9 @@ if __name__ == "__main__":
                 else:
                     loss += example_loss
             loss = loss / minibatch_size
+            predicted_label = torch.argmax(predicted_vector)
+            if predicted_label != gold_label:
+                error_samples_val.append((" ".join(original_text), gold_label, predicted_label.item()))
         val_time = time.time() - start_time # time taken for validation
         val_acc = correct / total # accuracy on validation set
         val_accuracies.append(val_acc)
@@ -200,6 +211,16 @@ if __name__ == "__main__":
         print("Validation completed for epoch {}".format(epoch + 1))
         print("Validation accuracy for epoch {}: {}".format(epoch + 1, val_acc))
         print("Validation time for this epoch: {}".format(val_time))
+
+    # Write results to error_samples_ffnn.txt
+    with open("error-samples/error_samples_ffnn.txt", "w") as f:
+        f.write("Training Errors:\n")
+        for vec, gold, pred in error_samples_train[:10]:  # just first 10 for brevity
+            f.write(f"Text: {vec}\nGold: {gold}, Pred: {pred}\n\n")
+
+        f.write("\nValidation Errors:\n")
+        for vec, gold, pred in error_samples_val[:10]:
+            f.write(f"Text: {vec}\nGold: {gold}, Pred: {pred}\n\n")
 
     # Write results to test_ffnn.out
     print("========== Writing results to test_ffnn.out ==========")
